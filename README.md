@@ -1,6 +1,8 @@
 # LH
 个人博客项目
 
+数据库使用mongodb
+
 项目同一安装依赖
 
 npm intall
