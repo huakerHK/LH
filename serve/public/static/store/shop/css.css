@@ -1,0 +1,67 @@
+
+html {
+	font-size: 10px;
+}
+html body {
+	margin:0;
+}
+.body {
+	width: 800px;
+	margin: 0 auto;
+	border: 2px solid black;
+}
+header,main,side,footer {
+	padding: 10px;
+}
+h1 {
+	text-align: center;
+}
+.container {
+	display: flex;
+}
+header {
+	display:flex;
+	flex-direction: column;
+	justify-items: center;
+	border: 2px solid black;
+	
+}
+
+main {
+	border: 2px solid black;
+	flex: 7;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+.car {
+	padding: 10px;
+	border: 1px solid #9FA4A8;
+	margin: 0 10px;
+	margin-bottom: 10px;
+	-webkit-margin-bottom:0 ;
+}
+.car img {
+	width: 200px;
+	border-radius: 5px;
+}
+
+side {
+	border: 2px solid black;
+	flex: 3;
+}
+footer {
+	border: 2px solid black;
+	text-align: center;
+}
+
+side div {
+	margin-bottom: 10px;
+}
+side label,select,input {
+	display: block;
+}
+select,input {
+	width: 100%;
+}
+
