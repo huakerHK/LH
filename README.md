@@ -5,4 +5,4 @@
 
 npm intall
 
-serve(服务器)是用node.js写的 所以启动命令用node serve.js
+serve(服务器)是用node.js写的 所以启动命令用node app.js
