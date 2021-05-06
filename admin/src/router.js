@@ -1,27 +1,24 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const route =  new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'admin',
+      component: () => import('./views/admin.vue'),
 	  children:[
 		  {
-			  path:'type',
+			  path:'articlType',
 			  name:'type',
 			  component:() => import('./components/articlType.vue')
 		  },
-	  ]
-    },
-	//	文章类型
-	//添加文章类型
+		  //	文章类型
+			//添加文章类型
 	{
 		path:'/addArticlType',
 		name:'addArticlType',
@@ -61,7 +58,7 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('./views/store.vue'),
+      component: () => import('./components/store/store.vue'),
     }
 	,{
 		path:'/add-project',
@@ -77,5 +74,26 @@ export default new Router({
 		path:'/editor',
 		component:() => import('./components/editor/editor.vue')
 	}
+	  ]
+    },
+	{
+		name:'login',
+		path:'/login',
+		component:() => import('./views/login.vue')
+	}
+	
   ]
+
+  
 })
+
+
+route.beforeEach((to,from,next) => {
+	const token = localStorage.token ? true : false;
+	if(to.path == '/login') {
+		next()
+	}else{
+		token ? next() : next('/login')
+	}
+})
+export default route

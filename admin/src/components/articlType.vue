@@ -1,25 +1,36 @@
 <template>
   <div class="hello">
-    <table>
-    	<thead><tr>文章分类管理</tr></thead>
-    	<tbody>
-    		<tr>
-    			<td>时间</td>
-    			<td>类型</td>
-    			<td>描述</td>
-    			<td>图片路径</td>
-    			<td>操作</td>
-    		</tr>
-    		<tr v-for="(items,key) in data.arr" :key='key' @click="articl(key)">
-    			<td>{{items.date}}</td>
-    			<td>{{items.title}}</td>
-    			<td>{{items.descibe}}</td>
-    			<td>{{items.path}}</td>
-    			<td><button @click.stop="edit(key)">编辑</button> <button @click.stop="delet(key)">删除</button></td>
-    		</tr>
-    	</tbody>
-    </table>
-	<div class="btn-container"><button @click="previous()">上一页</button>第{{data.currPage}}/{{data.pages}}页<button @click="next()">下一页</button></div>
+	  <div class="btn">
+		  <button @click="addtype()">添加文章类型</button>
+	  </div>
+	  <div class="main">
+		  <table>
+				<thead><tr>文章分类管理</tr></thead>
+				<tbody>
+					<tr>
+						<td>时间</td>
+						<td>类型</td>
+						<td>描述</td>
+						<td>图片路径</td>
+						<td>操作</td>
+					</tr>
+					<tr v-for="(items,key) in data.arr" :key='key' @click="articl(key)">
+						<td>{{items.date}}</td>
+						<td>{{items.title}}</td>
+						<td>{{items.descibe}}</td>
+						<td>{{items.path}}</td>
+						<td><button @click.stop="edit(key)">编辑</button> <button @click.stop="delet(key)">删除</button></td>
+					</tr>
+				</tbody>
+    		</table>
+			<div class="btn-container">
+				<button @click="previous()">上一页</button>
+				第{{data.currPage}}/{{data.pages}}页
+				<button @click="next()">下一页</button>
+			</div>
+	  </div>
+    
+	
   </div>
 </template>
 
@@ -36,6 +47,9 @@ export default {
   	  }
   },
   methods:{
+	  addtype(){
+		  this.$router.push('/addArticlType')
+	  },
   	  get(){
 		  this.data = []
   		  this.axios.post('/api/admin/Alltype',this.pages).then(data => {
@@ -95,6 +109,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped="scoped" lang="scss">
+.btn button {
+		border: none;
+		padding: 5px;
+		background-color: rgba($color: #4292f3, $alpha: 1.0);
+		border-radius: 5px;
+	}
+	.main {
+		position: relative;
+		min-height: 600px;
+	}
 table{
 		table-layout:fixed;
 		margin-top: 10px;
@@ -136,9 +160,9 @@ table{
 		}
 	}
 	.btn-container{
-		
+		position: absolute;
+		bottom: 0;
 		margin-top: 10px;
-		
 		button {
 			padding: 5px;
 			border: none;

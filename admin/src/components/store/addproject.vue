@@ -10,7 +10,7 @@
 		</div>
         <div class="path">
             <lable>项目路径:</lable>
-            <input type="text" v-model="data.path" placeholder="输入项目路径">
+            <input type="text" v-model="data.store" placeholder="输入项目路径">
         </div>
 		<div class="btn">
 			<button @click="send()">确 认</button>
@@ -26,19 +26,16 @@ export default {
             data:{
                 name:'',
                 describe:'',
-                path:'',
+                store:'',
             }
         }
     },
     methods:{
         send(){
-            let name = this.data.name;
-            let describe = this.data.describe;
-            let path = this.data.path;
-            if(name.length > 0 && describe.length > 0 && path.length > 0){
-                this.axios.post('/api/add-project',{
-                query:this.data
-            }).then(succe => {
+			
+            if(this.data.name.length > 0 && this.data.describe.length > 0 && this.data.store.length > 0){
+				console.log('test')
+                this.axios.post('/api/store/release',this.data).then(succe => {
                 if(succe.status == 200){
                     this.$router.push('/store')
                 }

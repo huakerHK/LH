@@ -3,21 +3,19 @@
 	  <div class="head">
 		  <button @click="add()">添加项目到仓库</button>
 	  </div>
-	  <div class="main">
-		<store v-bind:data='data'/>
-		
-		<div class="btn-container">
-	   		<button @click="previous()">上一页</button>
-	   			第{{data.currPage}}/{{data.pages}}页
-	   		<button @click="next()">下一页</button>
+	    <div class="main">
+			<store v-bind:data='data' @delet='up'/>
+			<div class="btn-container">
+	   			<button @click="previous()">上一页</button>
+	   				第{{data.currPage}}/{{data.pages}}页
+	   			<button @click="next()">下一页</button>
+			</div>
 		</div>
-	</div>
-   
   </div>
 </template>
 
 <script>
-import store from '../components/store/all'
+import store from './all.vue'
 	export default {
 		components:{
 			store,
@@ -32,6 +30,9 @@ import store from '../components/store/all'
 			}
 		},
 		methods:{
+			up(msg){
+				this.getdata()
+			},
 			getdata(){
 				this.axios.post('/api/store',{
 					query:this.page

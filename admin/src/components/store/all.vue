@@ -53,7 +53,7 @@ export default {
                    query:this.data.arr[key]._id
                }).then( succe => {
                    if(succe.status == 200){
-                       console.log('成功')
+                       this.$emit('delet','更新')
                    }
                })
            }

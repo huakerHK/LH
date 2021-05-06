@@ -32,9 +32,7 @@ export default {
             let describe = this.data.describe;
             let store = this.data.store;
             if(name.length > 0 && describe.length > 0 && store.length > 0){
-                this.axios.post('/api/up-project',{
-                    query:this.data
-                }).then(succe => {
+                this.axios.post('/api/store/updata',this.data).then(succe => {
                     if(succe.status == 200) {
                         this.$router.push('/store')
                     }
