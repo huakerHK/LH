@@ -34,8 +34,9 @@ app.use(require('./route/detal/index'));
 
 
 //	管理员
-//	首页
 app.use(require('./admin/admin.js'))
+//	首页
+app.use(require('./admin/articl.js'))
 //	仓库
 app.use(require('./admin/store.js'))
 //	监听服务器
